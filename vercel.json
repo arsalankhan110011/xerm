@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/windcast-site/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/windcast-site/$1"
+    }
+  ]
+}
