@@ -1,0 +1,49 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Report - WindCast</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script defer src="./app.js"></script>
+  <script defer src="./report.js"></script>
+</head>
+<body class="report-body">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./index.html">
+        <img class="brand-logo" src="./assets/logo.png" alt="WindCast logo" onerror="this.style.display='none'"/>
+        <span class="brand-text"><strong>WindCast</strong><span class="muted">Report</span></span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a class="nav-link" href="./index.html">Home</a>
+        <a class="nav-link" href="./explore.html">Explore</a>
+        <a class="nav-link" href="./map.html">Map</a>
+        <a class="nav-link" href="./insights.html">Insights</a>
+        <a class="nav-link" href="./methodology.html">Methodology</a>
+        <a class="nav-link active" href="./report.html">Report</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn btn-ghost" id="themeToggle" type="button" aria-label="Toggle theme">
+          <span class="icon" aria-hidden="true">Mode</span>
+          <span class="btn-text" id="themeLabel">Theme</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="report-page" aria-live="polite"></main>
+
+  <section id="reportEmpty" class="container card">
+    <h1 class="h3">No report payload found</h1>
+    <p class="muted">Open Explore, fill Report Builder, and click Generate Report to create this page content.</p>
+    <button class="btn btn-primary" id="tryLoadLast" type="button">Try load last payload</button>
+  </section>
+</body>
+</html>
+
+

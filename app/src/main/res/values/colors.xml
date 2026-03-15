@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="app_surface">#EEF2F7</color>
+    <color name="app_surface_alt">#F7F9FC</color>
+    <color name="app_navy">#0D3B66</color>
+    <color name="app_azure">#2A6FBB</color>
+    <color name="app_teal">#0F7B73</color>
+    <color name="app_muted">#56627A</color>
+    <color name="app_muted_on_dark">#D8E4F2</color>
+</resources>

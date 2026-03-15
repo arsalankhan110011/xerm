@@ -1,0 +1,104 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Map — WindCast</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script defer src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+  <script defer src="./app.js"></script>
+  <script defer src="./map.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./index.html">
+        <img class="brand-logo" src="./assets/logo.png" alt="WindCast logo" onerror="this.style.display='none'"/>
+        <span class="brand-text"><strong>WindCast</strong><span class="muted">Map</span></span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a class="nav-link" href="./index.html">Home</a>
+        <a class="nav-link" href="./explore.html">Explore</a>
+        <a class="nav-link active" href="./map.html">Map</a>
+        <a class="nav-link" href="./insights.html">Insights</a>
+        <a class="nav-link" href="./methodology.html">Methodology</a>
+        <a class="nav-link" href="./report.html">Report</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn btn-ghost" id="themeToggle" type="button">
+          <span class="icon" aria-hidden="true">Mode</span>
+          <span class="btn-text" id="themeLabel">Theme</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container page">
+    <div class="page-head reveal">
+      <h1>Map</h1>
+      <p class="muted">Station markers + heat layer by month/year. Switch basemap language using the control.</p>
+    </div>
+
+    <section class="grid-2 reveal">
+      <aside class="card">
+        <h2 class="h3">Map controls</h2>
+
+        <div class="field">
+          <label for="mapBasemap">Basemap language</label>
+          <select id="mapBasemap">
+            <option value="en" selected>English (recommended)</option>
+            <option value="local">Local/Default</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="mapMetric">Metric</label>
+          <select id="mapMetric">
+            <option value="energy" selected>Wind energy potential (kWh)</option>
+            <option value="speed">Wind speed (m/s)</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="mapYear">Year</label>
+          <select id="mapYear"></select>
+        </div>
+
+        <div class="field">
+          <label for="mapMonth">Month</label>
+          <select id="mapMonth"></select>
+        </div>
+
+        <div class="disclaimer">
+          Heat layer is a smooth visualization from station points (IDW-like influence). It is not micrositing-grade.
+        </div>
+
+        <div class="muted small">
+          Tip: click a marker → summary + “Open in Explore”.
+        </div>
+      </aside>
+
+      <section class="card map-card">
+        <div id="leafletMap" class="map"></div>
+      </section>
+    </section>
+
+    <section class="error-box hidden" id="mapError" aria-live="assertive"></section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="muted">WindCast • Map</div>
+      <div class="muted">WindCast Platform</div>
+    </div>
+  </footer>
+</body>
+</html>
+
+

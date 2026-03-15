@@ -1,0 +1,242 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Insights — WindCast</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script defer src="./app.js"></script>
+  <script defer src="./insights.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./index.html">
+        <img class="brand-logo" src="./assets/logo.png" alt="WindCast logo" onerror="this.style.display='none'"/>
+        <span class="brand-text"><strong>WindCast</strong><span class="muted">Insights</span></span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <div class="nav-item">
+          <a class="nav-link" href="./index.html">Home</a>
+          <div class="nav-submenu" role="menu" aria-label="Home sections">
+            <a class="nav-sublink" href="./index.html#heroStart">Overview</a>
+            <a class="nav-sublink" href="./index.html#platformPaths">Platform Paths</a>
+            <a class="nav-sublink" href="./index.html#decisionFlow">Decision Flow</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link" href="./explore.html">Explore</a>
+          <div class="nav-submenu" role="menu" aria-label="Explore sections">
+            <a class="nav-sublink" href="./explore.html#setupBlock">Setup</a>
+            <a class="nav-sublink" href="./explore.html#recommendBlock">Recommendations</a>
+            <a class="nav-sublink" href="./explore.html#scenarioBlock">Scenario Controls</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link" href="./map.html">Map</a>
+          <div class="nav-submenu" role="menu" aria-label="Map sections">
+            <a class="nav-sublink" href="./map.html#mapControlsBlock">Map Controls</a>
+            <a class="nav-sublink" href="./map.html#mapCanvasBlock">Map View</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link active" href="./insights.html">Insights</a>
+          <div class="nav-submenu" role="menu" aria-label="Insights sections">
+            <a class="nav-sublink" href="./insights.html#insightsRankings">Rankings</a>
+            <a class="nav-sublink" href="./insights.html#insightsComparison">Comparison</a>
+            <a class="nav-sublink" href="./insights.html#insightsTables">Tables</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link" href="./methodology.html">Methodology</a>
+          <div class="nav-submenu" role="menu" aria-label="Methodology sections">
+            <a class="nav-sublink" href="./methodology.html#methodData">Data & Scope</a>
+            <a class="nav-sublink" href="./methodology.html#methodPipeline">Pipeline</a>
+            <a class="nav-sublink" href="./methodology.html#methodLimits">Limitations</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link" href="./report.html">Report</a>
+        </div>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn btn-ghost" id="themeToggle" type="button">
+          <span class="icon" aria-hidden="true">Mode</span>
+          <span class="btn-text" id="themeLabel">Theme</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container page">
+    <div class="page-head reveal">
+      <h1>Insights</h1>
+      <p class="muted">Turn the yearly station data into ranked signals, side-by-side comparisons, and report-ready takeaways.</p>
+    </div>
+
+    <section class="panel reveal insights-toolbar">
+      <div class="panel-row insights-toolbar-row">
+        <div class="field">
+          <label>What this page answers</label>
+          <div class="insights-guide">
+            <div class="guide-chip">Which station leads annual energy</div>
+            <div class="guide-chip">How two stations differ month to month</div>
+            <div class="guide-chip">When each station performs best</div>
+            <div class="guide-chip">Which sites are more stable</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="insYear">Select year</label>
+          <select id="insYear"></select>
+          <div class="help muted">Annual energy = sum of monthly energy (kWh) for the selected year.</div>
+        </div>
+
+        <div class="field">
+          <label>Actions</label>
+          <div class="range-actions">
+            <button class="btn btn-primary" id="exportCsvBtn" type="button">Export summary CSV</button>
+            <a class="btn btn-secondary" href="./explore.html">Open Explore</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="insights-summary reveal" aria-label="Insights highlights">
+      <article class="summary-card insight-summary-card">
+        <div class="summary-label">Annual leader</div>
+        <div class="summary-value" id="summaryLeaderStation">-</div>
+        <div class="summary-sub" id="summaryLeaderMeta">-</div>
+      </article>
+      <article class="summary-card insight-summary-card">
+        <div class="summary-label">Runner-up gap</div>
+        <div class="summary-value" id="summaryGapValue">-</div>
+        <div class="summary-sub" id="summaryGapMeta">-</div>
+      </article>
+      <article class="summary-card insight-summary-card">
+        <div class="summary-label">Strongest system month</div>
+        <div class="summary-value" id="summaryPeakMonth">-</div>
+        <div class="summary-sub" id="summaryPeakMeta">-</div>
+      </article>
+      <article class="summary-card insight-summary-card">
+        <div class="summary-label">Most consistent station</div>
+        <div class="summary-value" id="summaryConsistencyStation">-</div>
+        <div class="summary-sub" id="summaryConsistencyMeta">-</div>
+      </article>
+    </section>
+
+    <section class="grid-2 reveal">
+      <div id="insightsRankings" class="card chart-card">
+        <div class="card-head">
+          <div>
+            <div class="chart-kicker">Rankings</div>
+            <h2 class="h3">Top stations by annual energy</h2>
+            <p class="muted small">A quick ranking of yearly energy output for all available stations.</p>
+          </div>
+        </div>
+        <div class="chart-meta">
+          <div class="chart-stat">
+            <span class="chart-stat-label">Leader</span>
+            <span class="chart-stat-value" id="rankLeaderStat">-</span>
+          </div>
+          <div class="chart-stat">
+            <span class="chart-stat-label">Lead Over #2</span>
+            <span class="chart-stat-value" id="rankGapStat">-</span>
+          </div>
+          <div class="chart-stat">
+            <span class="chart-stat-label">Network Total</span>
+            <span class="chart-stat-value" id="rankTotalStat">-</span>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="chartRank"></canvas>
+        </div>
+      </div>
+
+      <div id="insightsComparison" class="card chart-card">
+        <div class="card-head">
+          <div>
+            <div class="chart-kicker">Comparison</div>
+            <h2 class="h3">Station comparison (monthly energy)</h2>
+            <p class="muted small">Compare the seasonal shape and total yield between any two stations.</p>
+          </div>
+        </div>
+
+        <div class="compare-row">
+          <div class="field">
+            <label for="cmpA">Station A</label>
+            <select id="cmpA"></select>
+          </div>
+          <div class="field">
+            <label for="cmpB">Station B</label>
+            <select id="cmpB"></select>
+          </div>
+        </div>
+
+        <div class="chart-meta chart-meta-compact">
+          <div class="chart-stat">
+            <span class="chart-stat-label">Higher Annual Output</span>
+            <span class="chart-stat-value" id="compareWinnerStat">-</span>
+          </div>
+          <div class="chart-stat">
+            <span class="chart-stat-label">Biggest Month</span>
+            <span class="chart-stat-value" id="comparePeakStat">-</span>
+          </div>
+          <div class="chart-stat">
+            <span class="chart-stat-label">Annual Gap</span>
+            <span class="chart-stat-value" id="compareGapStat">-</span>
+          </div>
+        </div>
+
+        <div class="insight-note" id="compareNarrative">Select two stations to compare their yearly shape.</div>
+
+        <div class="chart-wrap">
+          <canvas id="chartCompare"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section id="insightsTables" class="grid-2 reveal">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="chart-kicker">Seasonality</div>
+            <h2 class="h3">Best months per station</h2>
+            <p class="muted small">Sorted by each station's strongest monthly energy output.</p>
+          </div>
+        </div>
+        <div id="bestMonthsTable" class="table-wrap"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <div class="chart-kicker">Stability</div>
+            <h2 class="h3">Consistency scores</h2>
+            <p class="muted small">
+              Speed consistency is variance-based. Direction consistency uses circular concentration (r).
+            </p>
+          </div>
+        </div>
+        <div id="consistencyTable" class="table-wrap"></div>
+      </div>
+    </section>
+
+    <section class="error-box hidden" id="insError" aria-live="assertive"></section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="muted">WindCast • Insights</div>
+      <div class="muted">WindCast Platform</div>
+    </div>
+  </footer>
+</body>
+</html>
+
+

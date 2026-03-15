@@ -1,0 +1,306 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WindCast — Wind Energy Forecasting Platform (KPK)</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./index.html" aria-label="WindCast Home">
+        <img class="brand-logo" src="./assets/logo.png" alt="WindCast logo" onerror="this.style.display='none'"/>
+        <span class="brand-text">
+          <strong>WindCast</strong>
+          <span class="muted">KPK Wind Energy Forecasting</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <div class="nav-item">
+          <a class="nav-link active" href="./index.html">Home</a>
+          <div class="nav-submenu" role="menu" aria-label="Home sections">
+            <a class="nav-sublink" href="./index.html#heroStart">Overview</a>
+            <a class="nav-sublink" href="./index.html#platformPaths">Platform Paths</a>
+            <a class="nav-sublink" href="./index.html#decisionFlow">Decision Flow</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link" href="./explore.html">Explore</a>
+          <div class="nav-submenu" role="menu" aria-label="Explore sections">
+            <a class="nav-sublink" href="./explore.html#setupBlock">Setup</a>
+            <a class="nav-sublink" href="./explore.html#recommendBlock">Recommendations</a>
+            <a class="nav-sublink" href="./explore.html#scenarioBlock">Scenario Controls</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link" href="./map.html">Map</a>
+          <div class="nav-submenu" role="menu" aria-label="Map sections">
+            <a class="nav-sublink" href="./map.html#mapControlsBlock">Map Controls</a>
+            <a class="nav-sublink" href="./map.html#mapCanvasBlock">Map View</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link" href="./insights.html">Insights</a>
+          <div class="nav-submenu" role="menu" aria-label="Insights sections">
+            <a class="nav-sublink" href="./insights.html#insightsRankings">Rankings</a>
+            <a class="nav-sublink" href="./insights.html#insightsComparison">Comparison</a>
+            <a class="nav-sublink" href="./insights.html#insightsTables">Tables</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link" href="./methodology.html">Methodology</a>
+          <div class="nav-submenu" role="menu" aria-label="Methodology sections">
+            <a class="nav-sublink" href="./methodology.html#methodData">Data & Scope</a>
+            <a class="nav-sublink" href="./methodology.html#methodPipeline">Pipeline</a>
+            <a class="nav-sublink" href="./methodology.html#methodLimits">Limitations</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link" href="./report.html">Report</a>
+        </div>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn btn-ghost" id="themeToggle" type="button" aria-label="Toggle theme">
+          <span class="icon" aria-hidden="true">Mode</span>
+          <span class="btn-text" id="themeLabel">Theme</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="heroStart" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Research Platform • Decision Support for KPK Stakeholders</p>
+          <h1>
+            Generative AI Powered<br/>
+            <span class="accent">Wind Energy Forecasting</span><br/>
+            for Khyber Pakhtunkhwa
+          </h1>
+
+          <p class="lead">
+            Explore station-level wind speed, wind direction, and wind energy potential (2014–2033),
+            with smart turbine recommendations and a professional report workflow.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="./explore.html">Open Explore</a>
+            <a class="btn btn-secondary" href="./map.html">View Map</a>
+          </div>
+        </div>
+
+        <div class="hero-illustration reveal">
+          <div class="hero-media">
+            <img class="hero-image" src="./assets/kpk_stations.png" alt="KPK meteorological stations map"
+                 onerror="document.getElementById('heroFallback').classList.remove('hidden'); this.classList.add('hidden')" />
+            <div id="heroFallback" class="placeholder-block hidden">
+              <div class="placeholder-title">Stations Map Placeholder</div>
+              <div class="placeholder-sub">Place your image at <code>/assets/kpk_stations.png</code></div>
+            </div>
+          </div>
+
+          <div class="hero-map-brief" aria-label="Map guide">
+            <div class="map-brief-head">
+              <div class="map-brief-title">How to read this view</div>
+              <div class="muted small">Start with coverage, then move into analysis.</div>
+            </div>
+
+            <div class="hero-badges">
+              <div class="badge">See where station coverage is strongest</div>
+              <div class="badge">Identify northern high-potential candidates fast</div>
+              <div class="badge">Open Map or Explore for year-based analysis</div>
+            </div>
+          </div>
+
+          <div class="mini-note">
+            <div class="mini-note-title">Interpretation note</div>
+            <div class="muted small">
+              Map markers show measured station locations. Any non-station location analyzed elsewhere in the platform is labeled “Estimated” and derived from nearby stations.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container hero-panels reveal">
+        <section class="hero-band hero-band-data" aria-label="Dataset snapshot">
+          <div class="hero-band-title">Dataset Snapshot</div>
+          <div class="callouts">
+            <div class="mini-card">
+              <div class="mini-title">Stations</div>
+              <div class="mini-value">10</div>
+              <div class="mini-sub muted">KPK meteorological coverage</div>
+            </div>
+            <div class="mini-card">
+              <div class="mini-title">Period</div>
+              <div class="mini-value">2014–2033</div>
+              <div class="mini-sub muted">Historical + Forecast</div>
+            </div>
+            <div class="mini-card">
+              <div class="mini-title">Outputs</div>
+              <div class="mini-value">4</div>
+              <div class="mini-sub muted">Speed • Direction • Energy • Turbines</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="hero-band hero-band-framework" aria-label="Decision framework">
+          <div class="hero-band-title">Decision Framework</div>
+          <div class="trust-strip">
+            <div class="trust-item">
+              <div class="trust-k">Clarity</div>
+              <div class="trust-v muted">Units, tooltips, and transparent assumptions</div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-k">Credibility</div>
+              <div class="trust-v muted">Range-filtered plots and exportable evidence</div>
+            </div>
+            <div class="trust-item">
+              <div class="trust-k">Workflow</div>
+              <div class="trust-v muted">Compare → Decide → Generate report</div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section id="platformOverview" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-kicker">Platform Paths</div>
+          <h2>What you can do</h2>
+          <p class="muted">A professional workflow for exploration, comparison, and reporting.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card reveal">
+            <h3>Explore a location</h3>
+            <p>Filter by years, inspect charts, and see recommendations with scenario assumptions.</p>
+            <a class="text-link" href="./explore.html">Go to Explore →</a>
+          </article>
+
+          <article class="card reveal">
+            <h3>Map-based analysis</h3>
+            <p>Station markers + selectable heat layer by month/year. Open any station in Explore.</p>
+            <a class="text-link" href="./map.html">Go to Map →</a>
+          </article>
+
+          <article class="card reveal">
+            <h3>Insights & ranking</h3>
+            <p>Rank by annual energy, compare stations, measure consistency, and export CSV.</p>
+            <a class="text-link" href="./insights.html">Go to Insights →</a>
+          </article>
+        </div>
+
+        <div class="disclaimer reveal">
+          <strong>Disclaimer:</strong> Forecasts and scenario outputs are decision-support signals, not guarantees.
+          For deployment decisions, confirm with on-site measurements and engineering design.
+        </div>
+      </div>
+    </section>
+
+    <section id="platformPaths" class="section section-alt">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-kicker">Start Here</div>
+          <h2>Choose the right entry point for your task</h2>
+          <p class="muted">The platform is strongest when you move through it deliberately instead of jumping page to page.</p>
+        </div>
+
+        <div class="grid-3 workflow-grid">
+          <article class="card reveal pathway-card">
+            <div class="pathway-step">01</div>
+            <h3>Screen a location fast</h3>
+            <p>Use Explore when you already know the site, station, place name, or coordinates and need an answer quickly.</p>
+            <ul class="feature-list">
+              <li>Search by station, place name, coordinates, or current device location</li>
+              <li>Review KPIs, charts, direction pattern, and recommendation output</li>
+              <li>Adjust scenario controls before building a report</li>
+            </ul>
+            <a class="btn btn-primary" href="./explore.html">Open Explore</a>
+          </article>
+
+          <article class="card reveal pathway-card">
+            <div class="pathway-step">02</div>
+            <h3>Scan the province visually</h3>
+            <p>Use Map when you want to discover promising areas first and then drill into a station from spatial context.</p>
+            <ul class="feature-list">
+              <li>Review station positions and heat layers by time slice</li>
+              <li>Spot clusters, outliers, and coverage gaps quickly</li>
+              <li>Jump from marker context into Explore with one click</li>
+            </ul>
+            <a class="btn btn-secondary" href="./map.html">Open Map</a>
+          </article>
+
+          <article class="card reveal pathway-card">
+            <div class="pathway-step">03</div>
+            <h3>Compare candidates and justify decisions</h3>
+            <p>Use Insights and Report when you need rankings, evidence, and a cleaner narrative for presentation or review.</p>
+            <ul class="feature-list">
+              <li>Compare annual energy and consistency across stations</li>
+              <li>Generate a report with captured assumptions and visuals</li>
+              <li>Keep the workflow suitable for academic or stakeholder review</li>
+            </ul>
+            <a class="btn btn-secondary" href="./insights.html">Open Insights</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="decisionFlow" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-kicker">Decision Flow</div>
+          <h2>How a strong evaluation should move through WindCast</h2>
+          <p class="muted">This keeps the platform aligned with real screening and reporting work instead of only chart browsing.</p>
+        </div>
+
+        <div class="workflow-strip reveal">
+          <article class="workflow-step">
+            <div class="workflow-index">1</div>
+            <h3>Locate</h3>
+            <p>Start with a known station, typed place, coordinates, or your current device location.</p>
+          </article>
+          <article class="workflow-step">
+            <div class="workflow-index">2</div>
+            <h3>Validate</h3>
+            <p>Check mean speed, annual energy, dominant direction, and best-month pattern for the chosen range.</p>
+          </article>
+          <article class="workflow-step">
+            <div class="workflow-index">3</div>
+            <h3>Stress-test</h3>
+            <p>Adjust scenario controls to see whether the opportunity still makes sense under realistic losses and hub height.</p>
+          </article>
+          <article class="workflow-step">
+            <div class="workflow-index">4</div>
+            <h3>Document</h3>
+            <p>Export charts and generate a report only after the assumptions and nearest-station basis are clear.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>WindCast</strong>
+        <div class="muted">Generative AI Powered Wind Energy Forecasting • KPK, Pakistan</div>
+      </div>
+      <div class="muted">© <span id="yearNow"></span> • WindCast Platform</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("yearNow").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
+

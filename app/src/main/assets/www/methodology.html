@@ -1,0 +1,129 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Methodology — WindCast</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./index.html">
+        <img class="brand-logo" src="./assets/logo.png" alt="WindCast logo" onerror="this.style.display='none'"/>
+        <span class="brand-text"><strong>WindCast</strong><span class="muted">Methodology</span></span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a class="nav-link" href="./index.html">Home</a>
+        <a class="nav-link" href="./explore.html">Explore</a>
+        <a class="nav-link" href="./map.html">Map</a>
+        <a class="nav-link" href="./insights.html">Insights</a>
+        <a class="nav-link active" href="./methodology.html">Methodology</a>
+        <a class="nav-link" href="./report.html">Report</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn btn-ghost" id="themeToggle" type="button">
+          <span class="icon" aria-hidden="true">Mode</span>
+          <span class="btn-text" id="themeLabel">Theme</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container page">
+    <div class="page-head reveal">
+      <h1>Methodology</h1>
+      <p class="muted">A formal description of data, forecasting, and recommendation outputs.</p>
+    </div>
+
+    <section class="card reveal prose">
+      <h2>1. Data and study scope</h2>
+      <p>
+        WindCast is a decision-support platform for wind energy screening in Khyber Pakhtunkhwa (KPK), Pakistan.
+        The platform uses monthly time-series data for ten representative stations:
+        Balakot, Bannu, Cherat, Chitral, Dir Upper, Drosh, Kakul, Parachinar, Peshawar, and Saidu Sharif.
+      </p>
+      <p>
+        The dataset includes a historical period (2014–2023) and a forecast period (2024–2033).
+        The web platform consumes precomputed outputs (JSON) for visualization and reporting; it does not train models in-browser.
+      </p>
+
+      <div class="figure">
+        <div class="figure-head">
+          <strong>Figure 1 — Dataset structure</strong>
+          <span class="muted small">Place at: <code>/assets/method_dataset.png</code></span>
+        </div>
+        <img class="figure-img" src="./assets/method_dataset.png" alt="Dataset diagram"
+             onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden')" />
+        <div class="placeholder-block hidden">
+          <div class="placeholder-title">Dataset diagram placeholder</div>
+          <div class="placeholder-sub">Upload <code>method_dataset.png</code> into <code>/assets/</code></div>
+        </div>
+      </div>
+
+      <h2>2. Pipeline overview</h2>
+      <ol>
+        <li><strong>Preprocessing:</strong> quality checks, missing value handling, monthly aggregation, and feature engineering.</li>
+        <li><strong>Forecasting:</strong> transformer-based sequence model trained on historical monthly patterns.</li>
+        <li><strong>Post-processing:</strong> smoothing, constraints, unit consistency, and alignment to the 2014–2033 range.</li>
+        <li><strong>Recommendation synthesis:</strong> mapping forecast signals to turbine type/height/orientation/capacity and hybrid advice.</li>
+      </ol>
+
+      <div class="figure">
+        <div class="figure-head">
+          <strong>Figure 2 — Model architecture</strong>
+          <span class="muted small">Place at: <code>/assets/method_model.png</code></span>
+        </div>
+        <img class="figure-img" src="./assets/method_model.png" alt="Model architecture diagram"
+             onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden')" />
+        <div class="placeholder-block hidden">
+          <div class="placeholder-title">Model diagram placeholder</div>
+          <div class="placeholder-sub">Upload <code>method_model.png</code> into <code>/assets/</code></div>
+        </div>
+      </div>
+
+      <h2>3. Outputs shown on the platform</h2>
+      <ul>
+        <li><strong>Wind speed forecast</strong> (m/s): monthly time series with range filtering.</li>
+        <li><strong>Wind direction forecast</strong> (degrees): circular statistics (dominant direction + concentration).</li>
+        <li><strong>Wind energy potential</strong> (kWh): monthly energy for screening and ranking.</li>
+        <li><strong>Smart turbine recommendations</strong>: turbine type, height, orientation, capacity, and hybrid guidance.</li>
+      </ul>
+
+      <div class="figure">
+        <div class="figure-head">
+          <strong>Figure 3 — Evaluation summary</strong>
+          <span class="muted small">Place at: <code>/assets/method_eval.png</code></span>
+        </div>
+        <img class="figure-img" src="./assets/method_eval.png" alt="Evaluation chart"
+             onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden')" />
+        <div class="placeholder-block hidden">
+          <div class="placeholder-title">Evaluation chart placeholder</div>
+          <div class="placeholder-sub">Upload <code>method_eval.png</code> into <code>/assets/</code></div>
+        </div>
+      </div>
+
+      <h2>4. Interpretation and limitations</h2>
+      <p>
+        WindCast is intended for preliminary decision support. Forecasts and scenario estimates are not guarantees of generation.
+        Micro-siting, terrain/roughness, wake effects, extreme events, and grid/structural constraints require additional engineering
+        analysis and on-site measurements.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="muted">WindCast • Methodology</div>
+      <div class="muted">WindCast Platform</div>
+    </div>
+  </footer>
+</body>
+</html>
+
+

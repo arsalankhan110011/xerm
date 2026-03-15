@@ -1,0 +1,174 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Map — WindCast</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script defer src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+  <script defer src="./app.js"></script>
+  <script defer src="./map.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./index.html">
+        <img class="brand-logo" src="./assets/logo.png" alt="WindCast logo" onerror="this.style.display='none'"/>
+        <span class="brand-text"><strong>WindCast</strong><span class="muted">Map</span></span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <div class="nav-item">
+          <a class="nav-link" href="./index.html">Home</a>
+          <div class="nav-submenu" role="menu" aria-label="Home sections">
+            <a class="nav-sublink" href="./index.html#heroStart">Overview</a>
+            <a class="nav-sublink" href="./index.html#platformPaths">Platform Paths</a>
+            <a class="nav-sublink" href="./index.html#decisionFlow">Decision Flow</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link" href="./explore.html">Explore</a>
+          <div class="nav-submenu" role="menu" aria-label="Explore sections">
+            <a class="nav-sublink" href="./explore.html#setupBlock">Setup</a>
+            <a class="nav-sublink" href="./explore.html#recommendBlock">Recommendations</a>
+            <a class="nav-sublink" href="./explore.html#scenarioBlock">Scenario Controls</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link active" href="./map.html">Map</a>
+          <div class="nav-submenu" role="menu" aria-label="Map sections">
+            <a class="nav-sublink" href="./map.html#mapControlsBlock">Map Controls</a>
+            <a class="nav-sublink" href="./map.html#mapCanvasBlock">Map View</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link" href="./insights.html">Insights</a>
+          <div class="nav-submenu" role="menu" aria-label="Insights sections">
+            <a class="nav-sublink" href="./insights.html#insightsRankings">Rankings</a>
+            <a class="nav-sublink" href="./insights.html#insightsComparison">Comparison</a>
+            <a class="nav-sublink" href="./insights.html#insightsTables">Tables</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link" href="./methodology.html">Methodology</a>
+          <div class="nav-submenu" role="menu" aria-label="Methodology sections">
+            <a class="nav-sublink" href="./methodology.html#methodData">Data & Scope</a>
+            <a class="nav-sublink" href="./methodology.html#methodPipeline">Pipeline</a>
+            <a class="nav-sublink" href="./methodology.html#methodLimits">Limitations</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link" href="./report.html">Report</a>
+        </div>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn btn-ghost" id="themeToggle" type="button">
+          <span class="icon" aria-hidden="true">Mode</span>
+          <span class="btn-text" id="themeLabel">Theme</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container page">
+    <div class="page-head reveal">
+      <h1>Map</h1>
+      <p class="muted">Station markers + heat layer by month/year. Switch basemap language using the control.</p>
+    </div>
+
+    <section class="grid-2 reveal map-layout">
+      <aside id="mapControlsBlock" class="card map-panel">
+        <div class="map-panel-head">
+          <div>
+            <div class="chart-kicker">Control Center</div>
+            <h2 class="h3">Map controls</h2>
+          </div>
+          <button class="btn btn-chip" id="mapResetView" type="button">Center on KPK</button>
+        </div>
+
+        <div class="map-status" aria-label="Current map state">
+          <div class="chart-stat">
+            <span class="chart-stat-label">Metric</span>
+            <strong class="chart-stat-value" id="mapStateMetric">Wind energy potential</strong>
+          </div>
+          <div class="chart-stat">
+            <span class="chart-stat-label">Time window</span>
+            <strong class="chart-stat-value" id="mapStateWindow">Jul 2028</strong>
+          </div>
+          <div class="chart-stat">
+            <span class="chart-stat-label">Coverage</span>
+            <strong class="chart-stat-value" id="mapStateStations">10 stations</strong>
+          </div>
+        </div>
+
+        <div class="map-control-grid">
+          <div class="field">
+            <label for="mapBasemap">Basemap language</label>
+          <select id="mapBasemap">
+            <option value="en" selected>English (recommended)</option>
+            <option value="local">Urdu</option>
+          </select>
+        </div>
+
+          <div class="field">
+            <label for="mapMetric">Metric</label>
+            <select id="mapMetric">
+              <option value="energy" selected>Wind energy potential (kWh)</option>
+              <option value="speed">Wind speed (m/s)</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="mapYear">Year</label>
+            <select id="mapYear"></select>
+          </div>
+
+          <div class="field">
+            <label for="mapMonth">Month</label>
+            <select id="mapMonth"></select>
+          </div>
+        </div>
+
+        <div class="disclaimer">
+          Heat layer is a smooth screening visualization from station points. Use it to compare patterns, not for micrositing decisions.
+        </div>
+
+        <div class="tip map-tip">
+          Click any marker to see monthly values and jump into Explore for that station.
+        </div>
+      </aside>
+
+      <section id="mapCanvasBlock" class="card map-card">
+        <div class="map-card-head">
+          <div>
+            <div class="chart-kicker">Spatial View</div>
+            <h2 class="h3">Live map surface</h2>
+          </div>
+          <div class="map-legend" aria-label="Map layers">
+            <span class="legend-pill"><span class="legend-dot legend-dot-marker"></span>Stations</span>
+            <span class="legend-pill"><span class="legend-dot legend-dot-heat"></span>Heat layer</span>
+          </div>
+        </div>
+        <div class="map-caption muted small" id="mapActiveCaption">Showing wind energy potential for Jul 2028.</div>
+        <div id="leafletMap" class="map"></div>
+      </section>
+    </section>
+
+    <section class="error-box hidden" id="mapError" aria-live="assertive"></section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="muted">WindCast • Map</div>
+      <div class="muted">WindCast Platform</div>
+    </div>
+  </footer>
+</body>
+</html>
+
+

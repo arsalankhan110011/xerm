@@ -1,0 +1,127 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Insights — WindCast</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script defer src="./app.js"></script>
+  <script defer src="./insights.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./index.html">
+        <img class="brand-logo" src="./assets/logo.png" alt="WindCast logo" onerror="this.style.display='none'"/>
+        <span class="brand-text"><strong>WindCast</strong><span class="muted">Insights</span></span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a class="nav-link" href="./index.html">Home</a>
+        <a class="nav-link" href="./explore.html">Explore</a>
+        <a class="nav-link" href="./map.html">Map</a>
+        <a class="nav-link active" href="./insights.html">Insights</a>
+        <a class="nav-link" href="./methodology.html">Methodology</a>
+        <a class="nav-link" href="./report.html">Report</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn btn-ghost" id="themeToggle" type="button">
+          <span class="icon" aria-hidden="true">Mode</span>
+          <span class="btn-text" id="themeLabel">Theme</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container page">
+    <div class="page-head reveal">
+      <h1>Insights</h1>
+      <p class="muted">Ranking, comparisons, best months, and consistency scores — exportable for reports.</p>
+    </div>
+
+    <section class="panel reveal">
+      <div class="panel-row">
+        <div class="field">
+          <label for="insYear">Select year</label>
+          <select id="insYear"></select>
+          <div class="help muted">Annual energy = sum of monthly energy (kWh) for the selected year.</div>
+        </div>
+
+        <div class="field">
+          <label>Actions</label>
+          <div class="range-actions">
+            <button class="btn btn-primary" id="exportCsvBtn" type="button">Export summary CSV</button>
+            <a class="btn btn-secondary" href="./explore.html">Open Explore</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid-2 reveal">
+      <div class="card chart-card">
+        <div class="card-head">
+          <h2 class="h3">Top stations by annual energy</h2>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="chartRank"></canvas>
+        </div>
+      </div>
+
+      <div class="card chart-card">
+        <div class="card-head">
+          <h2 class="h3">Station comparison (monthly energy)</h2>
+        </div>
+
+        <div class="compare-row">
+          <div class="field">
+            <label for="cmpA">Station A</label>
+            <select id="cmpA"></select>
+          </div>
+          <div class="field">
+            <label for="cmpB">Station B</label>
+            <select id="cmpB"></select>
+          </div>
+        </div>
+
+        <div class="chart-wrap">
+          <canvas id="chartCompare"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid-2 reveal">
+      <div class="card">
+        <div class="card-head">
+          <h2 class="h3">Best months per station</h2>
+        </div>
+        <div id="bestMonthsTable" class="table-wrap"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h2 class="h3">Consistency scores</h2>
+          <p class="muted small">
+            Speed consistency: variance-based. Direction consistency: circular concentration (r).
+          </p>
+        </div>
+        <div id="consistencyTable" class="table-wrap"></div>
+      </div>
+    </section>
+
+    <section class="error-box hidden" id="insError" aria-live="assertive"></section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="muted">WindCast • Insights</div>
+      <div class="muted">WindCast Platform</div>
+    </div>
+  </footer>
+</body>
+</html>
+
+

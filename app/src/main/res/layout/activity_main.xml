@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_surface"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/topbar_background"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="16dp">
+
+        <TextView
+            android:id="@+id/sectionLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wind Forecast Platform"
+            android:textAllCaps="true"
+            android:textColor="@color/app_muted_on_dark"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/pageTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Home"
+            android:textColor="@android:color/white"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/pageSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Research-focused wind analysis for Khyber Pakhtunkhwa"
+            android:textColor="@color/app_muted_on_dark"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/refreshButton"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:background="@drawable/action_button_primary"
+                android:text="Refresh"
+                android:textAllCaps="false"
+                android:textColor="@color/app_navy"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="12dp"
+                android:layout_height="1dp" />
+
+            <Button
+                android:id="@+id/shareButton"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:background="@drawable/action_button_secondary"
+                android:text="Share"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/app_surface"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/navBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="12dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="10dp">
+
+            <Button
+                android:id="@+id/navHome"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/nav_button_active"
+                android:text="Home"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/navExplore"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/nav_button"
+                android:text="Explore"
+                android:textAllCaps="false"
+                android:textColor="@color/app_navy"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/navMap"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/nav_button"
+                android:text="Map"
+                android:textAllCaps="false"
+                android:textColor="@color/app_navy"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/navInsights"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/nav_button"
+                android:text="Insights"
+                android:textAllCaps="false"
+                android:textColor="@color/app_navy"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/navMethodology"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/nav_button"
+                android:text="Methodology"
+                android:textAllCaps="false"
+                android:textColor="@color/app_navy"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/navReport"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="@drawable/nav_button"
+                android:text="Report"
+                android:textAllCaps="false"
+                android:textColor="@color/app_navy"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="0"
+        android:progressTint="@color/app_teal" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <FrameLayout
+            android:id="@+id/webViewContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:id="@+id/loadingOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/app_surface"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WindCast"
+                android:textColor="@color/app_navy"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/loadingText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Preparing the platform..."
+                android:textColor="@color/app_muted"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/errorOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F7F9FC"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="28dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Page failed to load"
+                android:textColor="@color/app_navy"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/errorText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="Check your connection and try again."
+                android:textColor="@color/app_muted"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/retryButton"
+                android:layout_width="180dp"
+                android:layout_height="44dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/action_button_primary"
+                android:text="Retry"
+                android:textAllCaps="false"
+                android:textColor="@color/app_navy"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>
